@@ -21,11 +21,11 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMn-d4-mxJ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="03h-Zd-p9p">
-                                <rect key="frame" x="20" y="800" width="374" height="42"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="03h-Zd-p9p">
+                                <rect key="frame" x="10" y="800" width="394" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mz6-Em-fM9">
-                                        <rect key="frame" x="0.0" y="0.0" width="91.5" height="42"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="125.5" height="42"/>
                                         <color key="backgroundColor" red="0.064383335880000003" green="0.78240895300000002" blue="0.1186664175" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Small">
@@ -36,7 +36,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKd-zh-kBk">
-                                        <rect key="frame" x="141.5" y="0.0" width="91" height="42"/>
+                                        <rect key="frame" x="134.5" y="0.0" width="125" height="42"/>
                                         <color key="backgroundColor" red="0.064383335880000003" green="0.78240895300000002" blue="0.1186664175" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Medium">
@@ -47,7 +47,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44n-Tg-FrH">
-                                        <rect key="frame" x="282.5" y="0.0" width="91.5" height="42"/>
+                                        <rect key="frame" x="268.5" y="0.0" width="125.5" height="42"/>
                                         <color key="backgroundColor" red="0.064383335880000003" green="0.78240895300000002" blue="0.1186664175" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Large">
@@ -64,11 +64,11 @@
                         <constraints>
                             <constraint firstItem="uMn-d4-mxJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Z34-gp-ihi"/>
                             <constraint firstItem="uMn-d4-mxJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZYl-5P-Fhx"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="03h-Zd-p9p" secondAttribute="trailing" constant="20" id="imi-BX-ERz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="03h-Zd-p9p" secondAttribute="trailing" constant="10" id="imi-BX-ERz"/>
                             <constraint firstItem="uMn-d4-mxJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kNQ-B5-gp2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="03h-Zd-p9p" secondAttribute="bottom" constant="20" id="lZl-SI-pKJ"/>
                             <constraint firstAttribute="bottom" secondItem="uMn-d4-mxJ" secondAttribute="bottom" id="r3g-7S-1ql"/>
-                            <constraint firstItem="03h-Zd-p9p" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="x8w-cS-EmO"/>
+                            <constraint firstItem="03h-Zd-p9p" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="x8w-cS-EmO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

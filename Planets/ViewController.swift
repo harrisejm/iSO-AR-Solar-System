@@ -11,18 +11,15 @@ import ARKit
 
 class ViewController: UIViewController {
     
-    let configuration = ARWorldTrackingConfiguration()
-
-    @IBOutlet weak var sceneView: ARSCNView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
+   //     self.sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
         self.sceneView.session.run(configuration)
-        
         self.sceneView.autoenablesDefaultLighting = true
-        // Do any additional setup after loading the view.
     }
+    
+    let configuration = ARWorldTrackingConfiguration()
+    @IBOutlet weak var sceneView: ARSCNView!
     
     var size : Double = 1
     
@@ -53,7 +50,6 @@ class ViewController: UIViewController {
         createPlanets()
     }
     
-    
     func planetTemplate(_ radiusTemplate: CGFloat, _ diffuseTemplate: String, _ specularTemplate: String?, _ emissionTemplate: String?, _ normalTemplate: String?, _ distanceTemplate: Double, _ durationTemplate: TimeInterval) {
         
         let node = SCNNode()
@@ -61,22 +57,28 @@ class ViewController: UIViewController {
         self.sceneView.scene.rootNode.addChildNode(node)
         
         let planetNode = planet(geometry: SCNSphere(radius: radiusTemplate*CGFloat(size)), diffuse: diffuseTemplate, specular: specularTemplate, emission: emissionTemplate, normal: normalTemplate, position: SCNVector3(distanceTemplate*size,0,0))
-
-        rotatePlanet(node,planetNode,durationTemplate)
+        
+        rotatePlanet(planetNode)
+        rotatePlanetAroundSun(node,planetNode,durationTemplate)
         planetPath(distanceTemplate)  //path rings
         attachMoonToEarth(diffuseTemplate,planetNode)
         attachRingToSaturn(diffuseTemplate,planetNode)
     }
     
-    func rotatePlanet(_ node: SCNNode, _ planetNode: SCNNode, _ durationTemplate: TimeInterval){
+    func rotatePlanetAroundSun(_ node: SCNNode, _ planetNode: SCNNode, _ durationTemplate: TimeInterval){
         node.addChildNode(planetNode)
         let action = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: durationTemplate)
         let forever = SCNAction.repeatForever(action)
         node.runAction(forever)
     }
     
-    //path rings
-    func planetPath(_ radius: Double){
+    func rotatePlanet(_ node: SCNNode){
+        let action = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 8)
+        let forever = SCNAction.repeatForever(action)
+        node.runAction(forever)
+    }
+    
+    func planetPath(_ radius: Double){  //path rings
         let node = SCNNode()
         node.geometry = SCNTorus(ringRadius: CGFloat(radius*size), pipeRadius: 0.0005)
         node.position = SCNVector3(0,0.5,-2)
@@ -86,9 +88,6 @@ class ViewController: UIViewController {
     func attachMoonToEarth(_ planet: String, _ node: SCNNode) {
         if planet == "earth day" {
             node.addChildNode(moon())
-            let action = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 8)
-            let forever = SCNAction.repeatForever(action)
-            node.runAction(forever)
         }
     }
     
@@ -98,9 +97,8 @@ class ViewController: UIViewController {
         }
     }
     
-    
     func moon() -> SCNNode {
-        let moon = planet(geometry: SCNSphere(radius: CGFloat(0.04*size)), diffuse: "moon", specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,0.25*size))
+        let moon = planet(geometry: SCNSphere(radius: CGFloat(0.04*size)), diffuse: "moon", specular: nil, emission: nil, normal: nil, position: SCNVector3(0,0,0.28*size))
         return moon
     }
     
@@ -118,12 +116,7 @@ class ViewController: UIViewController {
         planetTemplate(CGFloat(0.1*size), "saturn", nil, nil, nil, 3.6*size, 18*size)
         planetTemplate(CGFloat(0.07*size), "uranus", nil, nil, nil, 4.1*size, 23*size)
         planetTemplate(CGFloat(0.07*size), "neptune", nil, nil, nil, 4.5*size, 30*size)
-        
         planetTemplate(CGFloat(0.35*size), "sun diffuse", nil, nil, nil, 0, 23*size)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        createPlanets()
     }
     
     func planet(geometry: SCNGeometry, diffuse: String, specular: String?, emission: String?, normal: String?, position: SCNVector3) -> SCNNode {
@@ -136,10 +129,14 @@ class ViewController: UIViewController {
         planet.geometry?.firstMaterial?.emission.contents = UIImage(named: emission ?? "")
         //normal: add 3d details to surface"
         planet.geometry?.firstMaterial?.normal.contents = UIImage(named: normal ?? "")
-        
+
         planet.position = position
         
         return planet
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        createPlanets()
     }
 }
 
@@ -148,4 +145,3 @@ extension Int {
         return Double(self) * .pi/180
     }
 }
-
